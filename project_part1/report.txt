@@ -1,0 +1,131 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs24 \cf0 Nigel Hussain (s1659780)\
+\
+1)  These are just some additional comments for my code as I try to explain what happens.   \
+First, I set gamma = 1, as in the formula. Then, I attempted to retrieve the number of states by multiplying the number of rows and columns together. I set V equal to a zero vector with 125 elements, as that equals the number of states. I also set the rewards vector to a zero vector with 3 elements, as that is the maximum number of rewards that can be obtained. Then, I started my iteration. I set delta = 0 and then I started my initial for loop, iterating through all of the states. I first retrieved the possible_s2s and probability of each one. Then, I returned all of the rewards by iterating through the length(possible_s2s). I then set the filled my reward vector with these results. Then I finally initiated the algorithm. There is a backup value b in the loop, which was initially set to 0. Then I set v (the little v in the algorithm) equal to 0, calculated b and updated them, stored them and then returned the delta which was the maximum between 0 and the difference between v and V(s), the current policy. This continued until delta < 0.01 (the really small number chosen for this exercise. I ran through the results and obtained some results. \
+\
+This was the most common path taken: [See jpg file in folder]\
+\
+\
+On occasion, I would get a policy where the car only hit another car once. [This is the other jpg file that is in the same folder]\
+\
+\
+This was my V (the most commonly obtained one):\
+\
+V =\
+\
+  Columns 1 through 5\
+\
+         0         0         0         0         0\
+\
+  Columns 6 through 10\
+\
+    0.9000    0.0500    0.0500   -0.0500   -0.1000\
+\
+  Columns 11 through 15\
+\
+    0.9450    0.0525    0.0475   -0.0550   -0.1100\
+\
+  Columns 16 through 20\
+\
+  -17.9528    0.0524    0.0472   -0.0555   -0.1110\
+\
+  Columns 21 through 25\
+\
+    0.9471    0.0524    0.0472   -0.0555   -0.1111\
+\
+  Columns 26 through 30\
+\
+    0.9471    0.0524    0.0472   -0.0556   -0.1111\
+\
+  Columns 31 through 35\
+\
+    0.9471   -0.0476    0.0472   -0.0556   -0.1111\
+\
+  Columns 36 through 40\
+\
+    0.8571   -0.0476   -1.0028   -0.0556   -0.1111\
+\
+  Columns 41 through 45\
+\
+    0.8571   -0.1001    0.0472   -0.0556   -0.1111\
+\
+  Columns 46 through 50\
+\
+    0.8099   -0.0476    0.0472   -0.0556   -0.1111\
+\
+  Columns 51 through 55\
+\
+    0.8571   -0.0476    0.0472   -0.0556   -0.1111\
+\
+  Columns 56 through 60\
+\
+    0.8571    0.0524    0.0472   -0.0556   -0.1111\
+\
+  Columns 61 through 65\
+\
+  -17.9529    0.0524    0.0472   -0.0556   -0.1111\
+\
+  Columns 66 through 70\
+\
+    0.9471   -0.9976    0.0472   -0.0556   -0.1111\
+\
+  Columns 71 through 75\
+\
+    0.0021    0.0524    0.0472   -0.0556   -0.1111\
+\
+  Columns 76 through 80\
+\
+    0.9471    0.0524    0.0472   -0.0556   -0.1111\
+\
+  Columns 81 through 85\
+\
+    0.9471   -0.0476   -0.0528   -0.0556   -0.1111\
+\
+  Columns 86 through 90\
+\
+    0.8571    0.0474   -0.0528   -0.0556   -0.1111\
+\
+  Columns 91 through 95\
+\
+    0.9426    0.0474   -1.0028   -0.0556   -0.1111\
+\
+  Columns 96 through 100\
+\
+   -0.8574   -0.0001    0.0472    0.0444    0.0889\
+\
+  Columns 101 through 105\
+\
+   -0.9001   -0.0476    0.0522    0.0544    0.1089\
+\
+  Columns 106 through 110\
+\
+   -0.9429   -0.0474    0.0527    0.0554    0.1109\
+\
+  Columns 111 through 115\
+\
+   -0.9427    0.0526    0.0528    0.0555    0.1111\
+\
+  Columns 116 through 120\
+\
+    0.9474    0.0526    0.0528   -0.0444   -0.0889\
+\
+  Columns 121 through 125\
+\
+    0.9474   -0.9974   -0.0522   -0.0544   -0.1089\
+\
+However, something weird happened in my code (after running it once). When I ran the code with the while loop, I would get a normal response. However, when I tried running it again [after running it the first time, with the same small delta value], I would return a zero vector, and I would keep on getting this until I changed the while loop to the opposite sign (I had to change > to <). This could be explained by the fact that the policy already converged and it is just initializing it again. However, I was still able to retrieve an optimal policy from my code. \
+\
+2a) I would use the policy iteration algorithm to produce a better policy. When we are using the policy iteration algorithm, we will only be looking directly into the deterministic policy space. Furthermore, the greedy policy will end up selecting one action for every state. Thus, our policy can\'92t be stochastic.\
+\
+2b) The algorithm computes optimal policies as a Markov decision process (MDP), which assumes that all states are Markov states, meaning that the current state captures all relevant information from the history. Thus, due to the Markov property, we can still guarantee that the policy will still converge to an optimal policy as any change now will make the policy evaluation reward function change accordingly, even if it might take a few more evaluations. \
+\
+3) These are just additional comments for my code. I decided to implement the policy iteration first. I first copied and pasted my policy evaluation algorithm. Then I set up the policy iteration algorithm. I replace b in the book with p to avoid confusion. Then I set p = 0, returned the value that was obtained in the book, and then updated the value of p. This would repeat until b = p, in which case, I would proceed to the next part of the algorithm, the policy evaluation, which is explained in the first problem. I am sure my code doesn\'92t work, mainly due to the placement of the variables, but I am sure I have the right idea. \
+}
