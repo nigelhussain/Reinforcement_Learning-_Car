@@ -1,0 +1,17 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\ls1\ilvl0
+\f0\fs24 \cf0 1)	In cw_solution1, I first ran the cw2_exercise1 file and then I ran my solution to ensure that it worked. In order to do the monte carlo evaluation, I first had to retrieve all of the required values (the state features, actions, states and rewards). To do this, I first had to generate an MDP for the episode and then set a starting state for the location, and then set notAbsorbingState = 1 (this is for later). I then set reward and action vectors equal to a zero vector with 24 elements and the current step = 0. While the state is not the absorbing state (hasn\'92t reached the finish line), we have to return the state vector description using the getStateFeatures function. Then we had to pick an action according to the policy. To do this we had to evaluate a Q(s,a) function for the weights in Qtest_1 and then select the argmax_a for Q(s,a). We then did the action corresponding to the argmax and then found the next state id and reward according to that action. Then, we appended the rewards for that action and the action itself into their respective vectors. This enabled us to gather all of the required values for the evaluation. Then, we had to return the required values for the weight approximation. We used a linear approximation with MC. So, we first calculated the return, which was the sum of all of the rewards. We had to return the state features which corresponded to the actions in action movement history as well as the actions themselves. We then updated the weights according to these values. We then ran this through 10,000 loops, as by that point we realized the function would converge. \
+2)	In cw_solution1 bonus The same logic was applied here, however, the returns was set to the mean of the rewards, as that was what was mentioned in the book. \
+3)	For cw_solution 2, we followed the same logic as in the book. However, in this case, we had to implement a greedy function to select a policy. In this case, I decided to use the off-policy algorithm. Thus, I implemented the greedy algorithm, and in this, I updated the Q-function itself, when the probability for selecting this function was 1 - .6. All other ones would select a random policy. (This is where I could hope to use some feedback  I wasn\'92t to sure how I should be updating the Q-function (which is implicitly defined in Q_test1) or how to implement the probability). However, I understood that we had to do those things. \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+Also, for some odd reason, the solutions only worked when I ran cw2_exercise1 first. I\'92m not sure if this is supposed to be the case or not (I would like some feedback as to whether or not this is the case). \
+}
